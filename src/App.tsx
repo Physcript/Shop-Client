@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React , { useContext,useReducer }from 'react';
+import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import Navigation from './components/Navigation'
+import routes from './routes'
+
 import './App.css';
+import cartContext, { CartContextProvider } from "./Context/Cart/cart";
+import reducer from "./Context/Cart/reducer";
+import {initialAuth} from "./interfaces/auth";
 
 function App() {
+    const [ cartState,cartDispatch ] = useReducer(reducer,initialAuth)
+
+    const CartContextValue = {
+        cartState,
+        cartDispatch
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+        <CartContextProvider value = { CartContextValue }>
+            <Navigation />
+            <Routes>
+                { routes.map((val) => {
+                    return (
+                        <Route path = { val.path } element = { <val.element /> } />
+                    )
+                }) }
+            </Routes>
+        </CartContextProvider>
+    </BrowserRouter>
   );
 }
 
