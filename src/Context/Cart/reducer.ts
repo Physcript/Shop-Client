@@ -1,11 +1,15 @@
 
-import { ICartProps } from "../../interfaces/cart/cart";
 import { TCart } from "../../interfaces/cart/reducer";
-import { IProduct } from "../../interfaces/product";
-import {IAuthProps} from "../../interfaces/auth";
+import {IAuthProps, IUser} from "../../interfaces/auth";
+import {IProduct} from "../../interfaces/product";
 
 const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
-    let item = action.payload
+    let item: IProduct | IUser | undefined = undefined
+
+    if ("payload" in action) {
+        item = action?.payload
+    }
+
     let items =  [...state.CART.cart ] ;
 
 
@@ -18,8 +22,10 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                 items[index].quantity = items[index].quantity + 1
 
             }else {
-                item.quantity = 1
-                items.push(item)
+                if ("quantity" in item!) {
+                    item!.quantity = 1
+                }
+                items.push(<IProduct>item)
             }
 
             return {
@@ -29,6 +35,13 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                     count: 0,
                     total: 0
                 }
+            }
+        case 'LOGIN':
+            return {
+                ...state,
+                TOKEN: action.token,
+                USER: action.payload,
+                AUTH: true
             }
         default:
             return {
