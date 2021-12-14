@@ -1,26 +1,56 @@
 
 
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import axios from 'axios'
 import {Container} from "react-bootstrap";
 import Cards from '../components/Cards'
 import {IProduct} from "../interfaces/product";
+import cartContext from "../Context/Cart/cart";
 export interface IStartPage {}
 
 const StartPage: React.FunctionComponent<IStartPage> = (props) => {
+
+    const AuthContext = useContext(cartContext)
     const [ products,setProducts ] = useState([])
+    const [ loaded,setLoaded ] = useState(true)
+
     useEffect(() => {
-        axios.request({
-            url: `https://fakestoreapi.com/products/`,
-            method: 'GET'
-        })
-            .then((res) => {
-                setProducts(res.data)
+        if(loaded) {
+            setLoaded(false)
+            fetch(`https://fakestoreapi.com/products`).then((res) =>
+                res.json()
+            )
+                .then(json => {
+                    setProducts(json)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+        if(document.cookie.split('=')[1]) {
+            const token = document.cookie.split('=')[1]
+            fetch('http://localhost:1337/api/auth', {
+                method: 'GET',
+                credentials: 'include'
             })
-            .catch((err) => {
-                console.log(err)
-            })
-    })
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json()
+                    }
+                    else {
+                        throw new Error('Unauthorized')
+                    }
+                })
+                .then ((json) => {
+                    AuthContext.cartDispatch({ type: 'LOGIN', payload: json.data.user , token: json.data.token })
+                })
+                .catch((err) => {
+                    document.cookie = 'token='
+
+                })
+
+        }
+    },[])
     return (
         <div>
             <Container>

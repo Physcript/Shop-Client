@@ -1,33 +1,25 @@
-
-import { TCart } from "../../interfaces/cart/reducer";
+import {TCart} from "../../interfaces/cart/reducer";
 import {IAuthProps, IUser} from "../../interfaces/auth";
 import {IProduct} from "../../interfaces/product";
 
 const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
-    let item: IProduct | IUser | undefined = undefined
 
-    if ("payload" in action) {
-        item = action?.payload
-    }
-
-    let items =  [...state.CART.cart ] ;
+    let item: IProduct | IUser = action.payload
+    let items =  [ ...state.CART.cart ] ;
 
 
     switch ( action.type ) {
         case 'ADD':
-
-            if(items.find( ({ id }) => id === action.payload.id )) {
-
-                let index = items.findIndex( ({id}) => id === action.payload.id )
-                items[index].quantity = items[index].quantity + 1
-
-            }else {
-                if ("quantity" in item!) {
-                    item!.quantity = 1
-                }
-                items.push(<IProduct>item)
+            if (items.find(({id}) => id === action.payload.id)) {
+                const ite = items.findIndex( ({id}) => id === action.payload.id )
+                console.log(items[ite].quantity)
+                items[ite].quantity = items[ite].quantity + 1
+                console.log(items[ite])
+            } else {
+                action.payload.quantity = 1
+                items.push(action.payload)
             }
-
+            console.log(items)
             return {
                 ...state,
                 CART: {
@@ -36,6 +28,7 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                     total: 0
                 }
             }
+
         case 'LOGIN':
             return {
                 ...state,
@@ -43,6 +36,7 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                 USER: action.payload,
                 AUTH: true
             }
+
         default:
             return {
                 ...state
