@@ -42,10 +42,18 @@
   .w-md-50 {
     width: 50% !important
   }
+
 }
 @media (min-width: 576px) {
   .w-sm-50 {
     width: 25% !important
+  }
+
+}
+@media (max-width: 768px) {
+  .gap-me {
+    display:flex;
+    flex-direction: column;
   }
 }
 
