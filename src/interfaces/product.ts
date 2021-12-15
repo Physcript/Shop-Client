@@ -1,8 +1,6 @@
-import {ThemeProvider} from "react-bootstrap";
-
 
 export interface IProduct {
-    id: string,
+    id: number,
     title: string,
     price: number,
     description: string,
@@ -15,5 +13,19 @@ export interface IProduct {
 interface IRating {
     rate: number,
     count: number
+}
+
+export const InitalProduct: IProduct = {
+    id: 0,
+    title: '',
+    price: 0,
+    description: '',
+    category: '',
+    image: '',
+    quantity: 0,
+    rating: {
+        rate: 0,
+        count: 0
+    }
 }
 

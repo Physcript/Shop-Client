@@ -34,7 +34,7 @@ const LoginPage = (props: ILoginPage) => {
         })
             .then((res) => {
                 const { user, token } = res.data.data
-                AuthContext.cartDispatch({ type: 'LOGIN', payload: user, token: token })
+                AuthContext.cartDispatch({ type: 'LOGIN', user: user, token: token })
                 document.cookie = `token=${token}`
                 Navi('/')
 

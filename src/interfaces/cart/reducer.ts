@@ -12,7 +12,7 @@ interface ISubCart {
 }
 interface ILoginCart {
     type: 'LOGIN',
-    payload: IUser,
+    user: IUser,
     token: string
 }
 

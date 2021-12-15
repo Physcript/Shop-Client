@@ -42,7 +42,7 @@ const StartPage: React.FunctionComponent<IStartPage> = (props) => {
                     }
                 })
                 .then ((json) => {
-                    AuthContext.cartDispatch({ type: 'LOGIN', payload: json.data.user , token: json.data.token })
+                    AuthContext.cartDispatch({ type: 'LOGIN', user: json.data.user , token: json.data.token })
                 })
                 .catch((err) => {
                     document.cookie = 'token='
