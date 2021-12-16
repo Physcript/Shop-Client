@@ -17,11 +17,11 @@ const StartPage: React.FunctionComponent<IStartPage> = (props) => {
     useEffect(() => {
         if(loaded) {
             setLoaded(false)
-            fetch(`https://fakestoreapi.com/products`).then((res) =>
+            fetch(`http://localhost:1337/api/product`).then((res) =>
                 res.json()
             )
                 .then(json => {
-                    setProducts(json)
+                    setProducts(json.data)
                 })
                 .catch((err) => {
                     console.log(err)

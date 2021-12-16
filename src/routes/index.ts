@@ -2,13 +2,19 @@ import {IRoutes} from "../interfaces/routes";
 import StartPage from "../pages/StartPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from '../pages/RegisterPage'
+import ProductPage from "../pages/ProductPage";
 
 const mainRoutes:IRoutes[] = [
     {
         element: StartPage,
         path: '/',
         auth: false
-    }
+    },
+    {
+        element: ProductPage,
+        path: '/product/:productID',
+        auth: false,
+    },
 ]
 const authRoutes: IRoutes[] = [
     {

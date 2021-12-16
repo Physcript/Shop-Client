@@ -28,6 +28,11 @@
   color: #61dafb;
 }
 
+.brand {
+  text-decoration: none;
+  color: inherit;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -56,5 +61,7 @@
     flex-direction: column;
   }
 }
+
+
 
 

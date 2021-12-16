@@ -23,7 +23,7 @@ function App() {
             <Routes>
                 { routes.map((val) => {
                     return (
-                        <Route path = { val.path } element = { <val.element /> } />
+                        <Route path = { val.path } element = { <val.element props = { val?.props } /> } />
                     )
                 }) }
             </Routes>

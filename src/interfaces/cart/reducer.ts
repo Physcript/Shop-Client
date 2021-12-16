@@ -15,5 +15,8 @@ interface ILoginCart {
     user: IUser,
     token: string
 }
+interface ILogoutCart {
+    type: 'LOGOUT'
+}
 
-export type TCart = IAddCart | ISubCart | ILoginCart
+export type TCart = IAddCart | ISubCart | ILoginCart | ILogoutCart

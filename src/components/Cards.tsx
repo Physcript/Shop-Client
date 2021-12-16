@@ -18,6 +18,12 @@ const Cards = (props: { props: IProduct }) =>  {
             Navi('/login')
         }
     }
+
+    const changePage = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault()
+        Navi(`/product/${props.props.id}` , { state: props.props } )
+    }
+
     return (
         <Card style = {{ width: '200px', padding: '10px' }}>
             <Card.Img
@@ -26,7 +32,7 @@ const Cards = (props: { props: IProduct }) =>  {
                 style = {{ width: '200px',height: '200px' }}
             />
             <Card.Body className = 'd-flex flex-column'>
-                <Card.Title style = {{ fontSize: '14px' }}>{props.props.title}</Card.Title>
+                <Card.Title style = {{ fontSize: '14px' }} onClick = { changePage }>{props.props.title}</Card.Title>
                 <Card.Text style = {{ fontSize: '21px' }}>${props.props.price}</Card.Text>
                 <Button onClick = { addHandler } className = 'mt-auto'>Add to cart</Button>
 

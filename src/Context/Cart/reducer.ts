@@ -52,7 +52,17 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                     total: 0
                 }
             }
-
+        case 'LOGOUT':
+            return {
+                ...state,
+                TOKEN: '',
+                AUTH: false,
+                CART: {
+                    cart: [],
+                    count: 0,
+                    total: 0
+                }
+            }
         default:
             return {
                 ...state
