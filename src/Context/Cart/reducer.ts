@@ -5,6 +5,8 @@ import {IProduct, InitalProduct} from "../../interfaces/product";
 const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
     let item: IProduct = InitalProduct
     let user = null
+    let total: any = 0
+    let count = 0
 
     if ("payload" in action) {
         item = action.payload
@@ -29,14 +31,19 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
 
                 item.quantity = 1
                 items.push(item)
+
+            }
+            for(const price of items){
+                total += (price.price * price.quantity)
+                count++
             }
 
             return {
                 ...state,
                 CART: {
                     cart: items,
-                    count: 0,
-                    total: 0
+                    count,
+                    total: total.toFixed(2)
                 }
             }
 
