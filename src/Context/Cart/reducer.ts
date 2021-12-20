@@ -31,8 +31,10 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                 item.quantity = 1
                 items.push(item)
             }
+
             for(const price of items){
                 total += (price.price * price.quantity)
+                total.toFixed(2)
                 count += price.quantity * 1
             }
 
@@ -44,7 +46,34 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                     total: total.toFixed(2)
                 }
             }
+        case 'SUB':
 
+        if( items.find( ({id}) => id === item.id)) {
+          const index = items.findIndex( ({id}) => id === item.id )
+          if(item.quantity === 1) {
+            items.splice(index,1)
+          }else {
+            item.quantity = item.quantity - 1
+            items[index] = item
+          }
+        }
+
+
+        for(const price of items){
+            total += (price.price * price.quantity)
+            total.toFixed(2)
+            count += price.quantity * 1
+        }
+
+
+          return {
+            ...state,
+            CART: {
+              cart: items,
+              count,
+              total: total.toFixed(2)
+            }
+          }
         case 'LOGIN':
             return {
                 ...state,
