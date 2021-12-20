@@ -28,14 +28,12 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                 items[index].quantity++
 
             } else {
-
                 item.quantity = 1
                 items.push(item)
-
             }
             for(const price of items){
                 total += (price.price * price.quantity)
-                count++
+                count += price.quantity * 1
             }
 
             return {
@@ -53,11 +51,6 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
                 TOKEN: action.token,
                 USER: action.user,
                 AUTH: true,
-                CART: {
-                    cart: [],
-                    count: 0,
-                    total: 0
-                }
             }
         case 'LOGOUT':
             return {
