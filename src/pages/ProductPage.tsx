@@ -1,14 +1,18 @@
 
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
+import authContext from '../Context/Cart/cart'
 import { useLocation, useParams } from 'react-router-dom'
 import { IProduct,InitalProduct } from "../interfaces/product";
 import { Container,Row,Col } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
 
+
 export interface IProductPage {}
 
 const ProductPage = ( props:IProductPage ) => {
 
+    const AuthContext = useContext(authContext)
+    const Navi = useNavigate()
     const [ product, setProduct ] = useState<IProduct>(InitalProduct)
     const [ error,setError ] = useState('')
     const { productID } =  useParams()
@@ -38,6 +42,16 @@ const ProductPage = ( props:IProductPage ) => {
         })
     }
 
+    const addToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      AuthContext.cartDispatch({ type: 'ADD', payload: product })
+    }
+
+    const checkOut = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      Navi('/order')
+    }
+
     useEffect(() => {
         if(location.state !== null) {
             setProduct((location.state))
@@ -60,8 +74,15 @@ const ProductPage = ( props:IProductPage ) => {
                                 <div>
                                     <h1>₱{ product.price }</h1>
                                     <div className = 'd-flex flex-row gap-2' >
-                                        <button className = 'btn btn-primary'>Add to Cart</button>
-                                        <button className = 'btn btn-primary'>Check Out</button>
+                                        <button
+                                          className = 'btn btn-primary'
+                                          onClick = { addToCart }
+                                        >Add to Cart</button>
+                                        <button
+                                          className = 'btn btn-primary'
+                                          onClick = { checkOut }
+                                        >Check Out
+                                        </button>
                                     </div>
 
                                 </div>

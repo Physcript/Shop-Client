@@ -8,14 +8,6 @@ const OrderPage = (props: IOrderPage) => {
   const AuthContext = useContext(authContext)
   const CART =  AuthContext.cartState.CART.cart || []
 
-  const addCart = (e: React.MouseEvent<HTMLButtonElement>) => {
-
-  }
-
-  const removeCart = (e: React.MouseEvent<HTMLButtonElement>) => {
-
-  }
-
   return (
     <Container>
       <div className = 'd-flex flex-column gap-5 mt-1' >
