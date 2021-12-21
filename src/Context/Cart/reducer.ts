@@ -74,6 +74,15 @@ const reducer = (state: IAuthProps, action: TCart): IAuthProps => {
               total: total.toFixed(2)
             }
           }
+        case 'RESET':
+          return {
+            ...state,
+            CART: {
+              cart: [],
+              count: 0,
+              total: 0.00
+            }
+          }
         case 'LOGIN':
             return {
                 ...state,

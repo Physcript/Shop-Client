@@ -44,7 +44,11 @@ const ProductPage = ( props:IProductPage ) => {
 
     const addToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
-      AuthContext.cartDispatch({ type: 'ADD', payload: product })
+      if( AuthContext.cartState.AUTH ){
+          AuthContext.cartDispatch({type: 'ADD',payload: product })
+      }else {
+          Navi('/login')
+      }
     }
 
     const checkOut = (e: React.MouseEvent<HTMLButtonElement>) => {

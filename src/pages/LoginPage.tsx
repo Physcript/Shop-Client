@@ -6,12 +6,15 @@ import cartContext from "../Context/Cart/cart";
 import { useNavigate } from 'react-router-dom'
 export interface ILoginPage {}
 const LoginPage = (props: ILoginPage) => {
+
     const AuthContext = useContext(cartContext)
     const Navi = useNavigate()
+
     const [ loginData,setLoginData ] = useState({
         email: '',
         password: ''
     })
+    const [ loginError, setLoginError ] = useState('')
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
@@ -36,11 +39,12 @@ const LoginPage = (props: ILoginPage) => {
                 const { user, token } = res.data.data
                 AuthContext.cartDispatch({ type: 'LOGIN', user: user, token: token })
                 document.cookie = `token=${token}`
+                setLoginError('')
                 Navi('/')
 
             })
             .catch((err) => {
-                console.log(err.response)
+                setLoginError('Incorrect Email/Password')
             })
 
     }
@@ -49,6 +53,7 @@ const LoginPage = (props: ILoginPage) => {
         <div style = {{ height: '90vh' }} className = 'd-flex flex-column justify-content-center' >
             <Container className = '' style = {{ width: '300px' }}>
                 <div className = 'd-flex flex-column mb-2'>
+                    <FormLabel className = 'text-danger'>{ loginError }</FormLabel>
                     <FormLabel>Login</FormLabel>
                     <input
                         className = ''

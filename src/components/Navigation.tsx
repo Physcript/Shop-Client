@@ -11,6 +11,7 @@ const Navigation: React.FunctionComponent = (props) => {
     const logoutHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         AuthContext.cartDispatch({ type:'LOGOUT' })
+        document.cookie='token='
         Navi('/')
     }
     const cartHandler = (e:React.MouseEvent<HTMLButtonElement>) => {

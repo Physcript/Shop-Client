@@ -19,4 +19,8 @@ interface ILogoutCart {
     type: 'LOGOUT'
 }
 
-export type TCart = IAddCart | ISubCart | ILoginCart | ILogoutCart
+interface IResetCart {
+  type: 'RESET'
+}
+
+export type TCart = IAddCart | ISubCart | ILoginCart | ILogoutCart | IResetCart
