@@ -20,6 +20,9 @@ const Navigation: React.FunctionComponent = (props) => {
     const homeNavi = (e: React.MouseEvent<HTMLButtonElement>) => {
       Navi('/')
     }
+    const myOrderHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+      Navi('/myorder')
+    }
 
     return(
         <div style = {{ height: '10vh' }}>
@@ -32,6 +35,7 @@ const Navigation: React.FunctionComponent = (props) => {
                                <Nav className = 'ms-auto'>
                                    <Nav.Link>Welcome</Nav.Link>
                                    <Nav.Link>{ AuthContext.cartState.USER?.lastName }</Nav.Link>
+                                   <Nav.Link onClick = { myOrderHandler }>My order</Nav.Link>
                                    <Nav.Link onClick = { logoutHandler }>Log out</Nav.Link>
                                    <Nav.Link onClick = { cartHandler } className = 'position-relative'><i className="fas fa-shopping-cart "></i><Badge className = 'position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger' style = {{ top: '10px' }}> { AuthContext.cartState.CART.count } </Badge></Nav.Link>
 

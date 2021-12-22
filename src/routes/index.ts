@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from '../pages/RegisterPage'
 import ProductPage from "../pages/ProductPage";
 import OrderPage from '../pages/OrderPage'
+import OrderListPage from '../pages/OrderListPage'
 
 const mainRoutes:IRoutes[] = [
     {
@@ -19,6 +20,11 @@ const mainRoutes:IRoutes[] = [
     {
         element: OrderPage,
         path: '/order',
+        auth: false
+    },
+    {
+        element: OrderListPage,
+        path: '/myorder',
         auth: false
     },
 ]
