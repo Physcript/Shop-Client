@@ -20,6 +20,9 @@ const Navigation: React.FunctionComponent = (props) => {
     const homeNavi = (e: React.MouseEvent<HTMLButtonElement>) => {
       Navi('/')
     }
+    const registerNavi = (e: React.MouseEvent<HTMLButtonElement>) => {
+      Navi('/register')
+    }
     const myOrderHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
       Navi('/myorder')
     }
@@ -45,7 +48,7 @@ const Navigation: React.FunctionComponent = (props) => {
                    ) : (
                        <Navbar.Collapse id = 'response-navbar-nav'>
                            <Nav className = 'ms-auto'>
-                               <Nav.Link onClick = { homeNavi }>Register</Nav.Link>
+                               <Nav.Link onClick = { registerNavi }>Register</Nav.Link>
                                <Nav.Link href = "/login">Login</Nav.Link>
                                <Nav.Link onClick = { cartHandler } className = 'position-relative'><i className="fas fa-shopping-cart "></i><Badge className = 'position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger' style = {{ top: '10px' }}> { AuthContext.cartState.CART.count } </Badge></Nav.Link>
                            </Nav>

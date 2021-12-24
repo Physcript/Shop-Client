@@ -8,6 +8,9 @@ import cartContext, { CartContextProvider } from "./Context/Cart/cart";
 import reducer from "./Context/Cart/reducer";
 import {initialAuth} from "./interfaces/auth";
 
+
+import AdminPage from './pages/AdminPage'
+
 function App() {
     const [ cartState,cartDispatch ] = useReducer(reducer,initialAuth)
 
@@ -19,8 +22,10 @@ function App() {
   return (
     <BrowserRouter>
         <CartContextProvider value = { CartContextValue }>
+
             <Navigation />
             <Routes>
+                <Route path = '/admin' element = { <AdminPage /> } />
                 { routes.map((val) => {
                     return (
                         <Route path = { val.path } element = { <val.element props = { val?.props } /> } />
