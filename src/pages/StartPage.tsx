@@ -34,7 +34,7 @@ const StartPage: React.FunctionComponent<IStartPage> = (props) => {
                 credentials: 'include'
             })
                 .then((res) => {
-                    if (res.ok) {
+                    if (res.status === 200) {
                         return res.json()
                     }
                     else {
