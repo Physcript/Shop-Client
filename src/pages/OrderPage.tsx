@@ -22,7 +22,7 @@ const OrderPage = (props: IOrderPage) => {
     }
     const data = JSON.stringify(sendData)
     const url = 'https://ts-shop.herokuapp.com/api/order'
-    const request = new Request(url,{
+    const request = new Request(url,{ 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

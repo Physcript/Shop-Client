@@ -27,20 +27,39 @@ const LoginPage = (props: ILoginPage) => {
 
     const loginHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        axios.request({
-            url: 'https://ts-shop.herokuapp.com/api/login',
+        const url = 'https://ts-shop.herokuapp.com/api/login'
+        const myData = {
+            email: loginData.email,
+            password: loginData.password
+        }
+        const body = JSON.stringify(myData)
+
+        const request = new Request(url, {
             method: 'POST',
-            data: {
-                email: loginData.email,
-                password: loginData.password
-            }
+            headers: {"Content-Type":'application/json'},
+            body
         })
+
+        fetch(request)
             .then((res) => {
-                const { user, token } = res.data.data
-                AuthContext.cartDispatch({ type: 'LOGIN', user: user, token: token })
-                document.cookie = `token=${token}`
-                setLoginError('')
-                Navi('/')
+                // const { user, token } = res.data.data
+                // AuthContext.cartDispatch({ type: 'LOGIN', user: user, token: token })
+                // document.cookie = `token=${token}`
+                // setLoginError('')
+                // Navi('/')
+                if(res.status === 200)
+                {
+                    res.json().then((val) => {
+                        console.log(val)
+                    })
+                }
+                else 
+                {
+                    res.json().then((val) => {
+                        console.log(val)
+                    })
+                }
+
 
             })
             .catch((err) => {
