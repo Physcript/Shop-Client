@@ -42,21 +42,20 @@ const LoginPage = (props: ILoginPage) => {
 
         fetch(request)
             .then((res) => {
-                // const { user, token } = res.data.data
-                // AuthContext.cartDispatch({ type: 'LOGIN', user: user, token: token })
-                // document.cookie = `token=${token}`
-                // setLoginError('')
-                // Navi('/')
                 if(res.status === 200)
                 {
                     res.json().then((val) => {
-                        console.log(val)
+                        const { user, token } = val.data
+                        AuthContext.cartDispatch({ type: 'LOGIN', user: user, token: token })
+                        document.cookie = `token=${token}`
+                        setLoginError('')
+                        Navi('/')
                     })
                 }
                 else 
                 {
                     res.json().then((val) => {
-                        console.log(val)
+                        setLoginError('Incorrect Email/Password')
                     })
                 }
 
