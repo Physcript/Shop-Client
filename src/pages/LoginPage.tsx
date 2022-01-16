@@ -75,7 +75,7 @@ const LoginPage = (props: ILoginPage) => {
                     <Button className = 'btn-sm' onClick = { loginHandler }>Login</Button>
                     <a href = "#">Register</a>
                     <a href = "#">Forgot password</a>
-                </div>
+                </div>  
             </Container>
         </div>
     )
