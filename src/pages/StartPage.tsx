@@ -28,7 +28,6 @@ const StartPage: React.FunctionComponent<IStartPage> = (props) => {
                 })
         }
         if(document.cookie.split('=')[1]) {
-            const token = document.cookie.split('=')[1]
             fetch('https://ts-shop.herokuapp.com/api/auth', {
                 method: 'GET',
                 credentials: 'include'
@@ -45,6 +44,7 @@ const StartPage: React.FunctionComponent<IStartPage> = (props) => {
                     AuthContext.cartDispatch({ type: 'LOGIN', user: json.data.user , token: json.data.token })
                 })
                 .catch((err) => {
+                    console.log(err)
                     document.cookie = 'token='
 
                 })
