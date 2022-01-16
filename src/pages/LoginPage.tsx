@@ -28,7 +28,7 @@ const LoginPage = (props: ILoginPage) => {
     const loginHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         axios.request({
-            url: 'http://localhost:1337/api/login',
+            url: 'https://ts-shop.herokuapp.com/api/login',
             method: 'POST',
             data: {
                 email: loginData.email,

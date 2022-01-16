@@ -17,7 +17,7 @@ const StartPage: React.FunctionComponent<IStartPage> = (props) => {
     useEffect(() => {
         if(loaded) {
             setLoaded(false)
-            fetch(`http://localhost:1337/api/product`).then((res) =>
+            fetch(`https://ts-shop.herokuapp.com/api/product`).then((res) =>
                 res.json()
             )
                 .then(json => {
@@ -29,7 +29,7 @@ const StartPage: React.FunctionComponent<IStartPage> = (props) => {
         }
         if(document.cookie.split('=')[1]) {
             const token = document.cookie.split('=')[1]
-            fetch('http://localhost:1337/api/auth', {
+            fetch('https://ts-shop.herokuapp.com/api/auth', {
                 method: 'GET',
                 credentials: 'include'
             })

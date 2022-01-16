@@ -19,7 +19,7 @@ const ProductPage = ( props:IProductPage ) => {
     const location = useLocation()
 
     const findProduct = async () => {
-        const url = 'http://localhost:1337/api/one-product'
+        const url = 'https://ts-shop.herokuapp.com/api/one-product'
         const p_id = {
             id : productID
         }

@@ -54,7 +54,7 @@ const OrderListPage = ( props: IOrderListPage ) => {
 
 
   useEffect(() => {
-    const url = 'http://localhost:1337/api/order'
+    const url = 'https://ts-shop.herokuapp.com/api/order'
 
     const request = new Request(url,{
       credentials: 'include',

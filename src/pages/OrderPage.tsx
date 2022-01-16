@@ -21,7 +21,7 @@ const OrderPage = (props: IOrderPage) => {
       userId: AuthContext.cartState.USER!._id
     }
     const data = JSON.stringify(sendData)
-    const url = 'http://localhost:1337/api/order'
+    const url = 'https://ts-shop.herokuapp.com/api/order'
     const request = new Request(url,{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

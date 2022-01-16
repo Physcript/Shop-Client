@@ -44,7 +44,7 @@ const RegisterPage = (props: RegisterPage) => {
 
         const data = JSON.stringify(myData)
 
-        const url = 'http://localhost:1337/api/register'
+        const url = 'https://ts-shop.herokuapp.com/api/register'
 
         const request = new Request(url, {
             method: 'POST',

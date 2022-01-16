@@ -23,7 +23,7 @@ const AdminPage = (props: IAdminPage) => {
       password: password.password
     }
     const data = JSON.stringify(myData)
-    const url = 'http://localhost:1337/api/loginadmin'
+    const url = 'https://ts-shop.herokuapp.com/api/loginadmin'
     const request = new Request(url,{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
