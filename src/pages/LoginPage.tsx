@@ -48,7 +48,7 @@ const LoginPage = (props: ILoginPage) => {
                         const { user, token } = val.data
                         AuthContext.cartDispatch({ type: 'LOGIN', user: user, token: token })
                         document.cookie = `token=${token}`
-                        console.log(token)
+                        Navi('/')
                         setLoginError('')
 
                     })
