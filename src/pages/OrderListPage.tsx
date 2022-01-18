@@ -55,10 +55,10 @@ const OrderListPage = ( props: IOrderListPage ) => {
 
   useEffect(() => {
     const url = 'https://ts-shop.herokuapp.com/api/order'
-
+    const token = document.cookie.split("=")[1]
     const request = new Request(url,{
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json',token }
     })
 
     fetch(request).then ((res) => {
