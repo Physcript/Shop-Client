@@ -28,9 +28,10 @@ const StartPage: React.FunctionComponent<IStartPage> = (props) => {
                 })
         }
         if(document.cookie.split('=')[1] !== '') {
+            const token = document.cookie.split("=")[1]
             fetch('https://ts-shop.herokuapp.com/api/auth', {
                 method: 'GET',
-                headers: {"Content-Type": 'application/json'},
+                headers: {"Content-Type": 'application/json', token},
                 credentials: 'include'
             })
                 .then((res) => {
