@@ -22,9 +22,10 @@ const OrderPage = (props: IOrderPage) => {
     }
     const data = JSON.stringify(sendData)
     const url = 'https://ts-shop.herokuapp.com/api/order'
+    const token = document.cookie.split("=")[1]
     const request = new Request(url,{ 
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', token },
       credentials: 'include',
       body: data
     })
